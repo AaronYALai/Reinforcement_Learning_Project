@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-07 16:21:50
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-07 18:03:27
+# @Last Modified time: 2016-10-08 02:40:58
 
 from keras.models import Sequential, model_from_json
 from keras.layers.core import Dense, Dropout, Activation
@@ -15,8 +15,8 @@ import pickle
 import random
 
 
-def initAgent(neurons=512, alpha=0.1, layers=1, lr=1e-3,
-              moment=0.9, width=19):
+def initAgent(neurons=512, layers=1, lr=1e-3,
+              moment=0.9, width=19, alpha=0.1):
     """Initialize agent: specify num of neurons and hidden layers"""
     model = Sequential()
     model.add(Dense(2 * width**2, init='lecun_uniform',
