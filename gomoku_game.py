@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-07 15:03:47
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-07 15:26:05
+# @Last Modified time: 2016-10-07 15:58:20
 
 import numpy as np
 
@@ -30,8 +30,8 @@ def makeMove(state, available, action, actor):
 
 def winGame(sub_state):
     """check if the game winning criteria is met"""
-    for i in range(15):
-        for j in range(15):
+    for i in range(sub_state.shape[0] - 4):
+        for j in range(sub_state.shape[1] - 4):
 
             horizontal = sub_state[i][j: j+5]
             if (horizontal == 1).all():
@@ -53,36 +53,62 @@ def fullGrid(state):
     return not ((state[:, :, 0] + state[:, :, 1]) == 0).any()
 
 
-def getReward(state, whose_turn):
+def getReward(state, whose_turn, win_reward=500, lose_reward=-1000,
+              even_reward=-100, keepgoing_reward=-10):
+    """calculate the reward given to whom just moved"""
     reward = [0, 0]
+
     if winGame(state[:, :, whose_turn]):
-        reward[whose_turn] = 500
-        reward[1 - whose_turn] = -1000
+        reward[whose_turn] = win_reward
+        reward[1 - whose_turn] = lose_reward
+
     elif fullGrid(state):
-        reward = [-100, -100]
+        reward = [even_reward, even_reward]
+
     else:
-        reward[whose_turn] = -10
+        reward[whose_turn] = keepgoing_reward
+
     return reward
 
 
 def drawGrid(state):
-    grid = np.zeros((19, 19), dtype='<U2')
+    """visualize the chessboard"""
+    grid = np.zeros(state.shape[:2], dtype='<U2')
     grid[:] = ' '
-    for i in range(19):
-        for j in range(19):
+
+    for i in range(state.shape[0]):
+        for j in range(state.shape[1]):
+
             if (state[(i, j)] > 0).any():
+
                 if (state[(i, j)] == 1).all():
                     raise
+
                 elif state[(i, j)][0] == 1:
                     grid[(i, j)] = 'O'
+
                 else:
                     grid[(i, j)] = 'X'
+
     return grid
 
 
 def displayGrid(grid):
-    line = '\n' + '- + '*18 + '- {}\n'
-    line = line.join([' | '.join(grid[i]) for i in range(19)])
-    bottom = ('\n' + '  {} '*9).format(*[i+1 for i in range(9)])
-    bottom += (' {} '*9).format(*[i+1 for i in range(9, 19)])
-    print(line.format(*[i+1 for i in range(19)])+bottom)
+    """print out the chessboard"""
+    wid = grid.shape[0]
+    show_num = 9 if wid > 9 else wid
+
+    # chessboard
+    line = '\n' + '- + ' * (wid - 1) + '- {}\n'
+    line = line.join([' | '.join(grid[i]) for i in range(wid)])
+
+    # mark the number of its lines
+    bottom = ('\n' + '  {} ' * show_num)
+    bottom = bottom.format(*[i+1 for i in range(show_num)])
+
+    if show_num == 9:
+        part = (' {} '*(wid - show_num))
+        part = part.format(*[i+1 for i in range(show_num, wid)])
+        bottom += part
+
+    print(line.format(*[i+1 for i in range(wid)]) + bottom)
