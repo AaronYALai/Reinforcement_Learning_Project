@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-08 01:55:41
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 02:50:39
+# @Last Modified time: 2016-10-08 02:51:41
 
 from gomoku_game import initGame, makeMove, getReward, drawGrid, displayGrid
 from agent_utils import load_agent
@@ -10,10 +10,10 @@ from agent_utils import load_agent
 import numpy as np
 
 
-def agent_play(agent1_name, agent2_name):
+def agent_play(agent1_name, agent2_name, width):
     agent1 = load_agent(agent1_name)
     agent2 = load_agent(agent2_name)
-    play_game(agent1, agent2)
+    play_game(agent1, agent2, width)
 
 
 def play_game(agent1, agent2, width):
@@ -53,7 +53,7 @@ def play_game(agent1, agent2, width):
 
 
 def main():
-    agent_play('agent1.pickle', 'agent2.pickle')
+    agent_play('agent1.pickle', 'agent2.pickle', 11)
 
 
 if __name__ == '__main__':
