@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-07 15:03:47
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-07 16:18:32
+# @Last Modified time: 2016-10-07 17:30:26
 
 import numpy as np
 
@@ -150,7 +150,7 @@ def try_display(width=19):
 
 
 def main():
-    try_display()
+    try_display(11)
 
 
 if __name__ == '__main__':
