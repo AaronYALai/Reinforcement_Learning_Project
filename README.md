@@ -33,6 +33,5 @@ Install all dependencies and run the model:
     python DQN.py
 
 
-Certificate
---------
+#### Reference: [**Q-learning with Neural Network**](http://outlace.com/Reinforcement-Learning-Part-3/)
 
