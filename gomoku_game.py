@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-07 15:03:47
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-07 15:58:20
+# @Last Modified time: 2016-10-07 16:18:32
 
 import numpy as np
 
@@ -112,3 +112,46 @@ def displayGrid(grid):
         bottom += part
 
     print(line.format(*[i+1 for i in range(wid)]) + bottom)
+
+
+def try_display(width=19):
+    state, avai = initGame(width)
+    terminate = False
+
+    print('Start')
+    for i in range(int(width**2 / 2)):
+
+        for actor in [0, 1]:
+            new_state = None
+
+            while new_state is None:
+                x = np.random.randint(width)
+                y = np.random.randint(width)
+                move = (x, y)
+                new_state, avai = makeMove(state, avai, move, actor)
+
+            state = new_state
+            reward = getReward(state, actor)
+
+            if 500 in reward:
+                print('\tterminal: %d\n' % i)
+                terminate = True
+                break
+
+            elif -100 in reward:
+                print('\tchessboard is full.\n')
+                terminate = True
+                break
+
+        if terminate:
+            break
+
+    displayGrid(drawGrid(state))
+
+
+def main():
+    try_display()
+
+
+if __name__ == '__main__':
+    main()
