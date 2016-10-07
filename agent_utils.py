@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-07 16:21:50
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-07 18:00:45
+# @Last Modified time: 2016-10-07 18:03:27
 
 from keras.models import Sequential, model_from_json
 from keras.layers.core import Dense, Dropout, Activation
@@ -71,7 +71,7 @@ def compute_Q(agents, actor, pre_state, new_state, new_available, width=19):
 
 
 def compute_label(maxQ, max_furtherQ, actor, action, reward,
-                  gamma, gamma2, qval, y_pre, keepgoing_reward, width=19):
+                  gamma, gamma2, qval, y_pre, keepgoing_reward, width):
     """
     Compute the target output y for two agents' the deep Q-network
     The policy: balance between minimizing rival's Q (gamma)
