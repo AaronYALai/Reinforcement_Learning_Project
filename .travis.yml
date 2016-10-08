@@ -16,6 +16,7 @@ before_install:
 
 env:
   global:
+    - KERAS_BACKEND=theano
     - PIP_WHEEL_DIR=$HOME/.cache/pip/wheels
     - PIP_FIND_LINKS=file://$HOME/.cache/pip/wheels
 
