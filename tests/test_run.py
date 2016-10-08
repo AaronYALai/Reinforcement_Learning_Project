@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-08 13:31:46
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 14:37:49
+# @Last Modified time: 2016-10-08 14:38:39
 
 from unittest import TestCase
 from gomoku_game import try_display
@@ -23,15 +23,15 @@ class test_running(TestCase):
         try_display()
 
     def test_train_agent_and_play(self):
-        train_agents(width=11, agent1_save=ag1, agent2_save=ag2)
+        train_agents(width=11, agent1_save=self.ag1, agent2_save=self.ag2)
 
         # re-train
-        train_agents(False, ag1, ag2, width=11)
+        train_agents(False, self.ag1, self.ag2, width=11)
 
-        agent_play(ag1, ag2, 11)
+        agent_play(self.ag1, self.ag2, 11)
 
-        os.remove(ag1)
-        os.remove(ag2)
+        os.remove(self.ag1)
+        os.remove(self.ag2)
 
     def test_human(self):
         replies = (x for x in ['1,1', '4,4', 'end'])
