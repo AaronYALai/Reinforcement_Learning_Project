@@ -17,6 +17,7 @@ before_install:
 env:
   global:
     - KERAS_BACKEND=theano
+    - THEANO_FLAGS='gcc.cxxflags="-march=core2"'
     - PIP_WHEEL_DIR=$HOME/.cache/pip/wheels
     - PIP_FIND_LINKS=file://$HOME/.cache/pip/wheels
 
@@ -28,7 +29,7 @@ install:
 
 
 script:
-  - THEANO_FLAGS='gcc.cxxflags="-march=core2"' py.test . --cov=./
+  - py.test . --cov=./
   - flake8 ./
 
 
