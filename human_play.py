@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-08 12:28:55
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 13:23:04
+# @Last Modified time: 2016-10-08 13:30:23
 
 from gomoku_game import initGame, makeMove, getReward, drawGrid, displayGrid
 from agent_utils import load_agent
@@ -23,7 +23,7 @@ def combat_with_human(agent, width, turn, win_reward, lose_reward,
 
     step = 0
     terminate = False
-    print('Game start!')
+    print('Game start! ("end" to terminate)')
 
     for k in range(width**2 + 5):
         step += 1
@@ -33,7 +33,10 @@ def combat_with_human(agent, width, turn, win_reward, lose_reward,
             flag = True
 
             while flag:
-                action = input(">>> Input (ex. 1, 1): ")
+                try:
+                    action = raw_input(">>> Input (ex. 1, 1): ")
+                except NameError:
+                    action = input(">>> Input (ex. 1, 1): ")
 
                 if action == 'end':
                     flag = False
