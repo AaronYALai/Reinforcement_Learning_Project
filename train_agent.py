@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-08-02 21:42:08
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 12:44:04
+# @Last Modified time: 2016-10-08 13:37:13
 
 import random
 import numpy as np
@@ -115,6 +115,7 @@ def training(epoch, agent1, agent2, gamma=0.5, gamma2=0.95, epsilon=0.8,
 
 
 def train_agents(new=True, agent1_name=None, agent2_name=None, epoch=10,
+                 agent1_save='agent1.pickle', agent2_save='agent2.pickle',
                  n_layer1=2, n_layer2=2, neurons1=1024, neurons2=1024,
                  gamma=0.5, gamma2=0.95, epsilon=0.8,
                  eps_threshold=0.05, buffersize=100, batchsize=40,
@@ -134,12 +135,12 @@ def train_agents(new=True, agent1_name=None, agent2_name=None, epoch=10,
                               print_every, verb, width, win_reward,
                               lose_reward, even_reward, keepgoing_reward)
 
-    save_agent(agent1, 'agent1.pickle')
-    save_agent(agent2, 'agent2.pickle')
+    save_agent(agent1, agent1_save)
+    save_agent(agent2, agent2_save)
 
 
 def main():
-    train_agents(width=11)
+    train_agents(False, 'agent1.pickle', 'agent2.pickle', width=11)
 
 
 if __name__ == '__main__':

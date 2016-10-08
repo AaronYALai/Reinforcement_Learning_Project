@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-07 16:21:50
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 02:40:58
+# @Last Modified time: 2016-10-08 13:56:07
 
 from keras.models import Sequential, model_from_json
 from keras.layers.core import Dense, Dropout, Activation
@@ -141,12 +141,14 @@ def save_agent(agent, filename):
         pickle.dump([json_model, weights], f, pickle.HIGHEST_PROTOCOL)
 
 
-def load_agent(filename):
+def load_agent(filename, lr=1e-3, moment=0.9):
     """load the agent network's parameters and architecture"""
     with open(filename, 'rb') as f:
         json_model, weights = pickle.load(f)
 
     agent = model_from_json(json_model)
     agent.set_weights(weights)
+    opt = SGD(lr=lr, momentum=moment, decay=1e-18, nesterov=False)
+    agent.compile(loss='mse', optimizer=opt)
 
     return agent
