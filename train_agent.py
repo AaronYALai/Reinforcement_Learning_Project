@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-08-02 21:42:08
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 13:37:13
+# @Last Modified time: 2016-10-08 16:59:05
 
 import random
 import numpy as np
@@ -100,7 +100,7 @@ def training(epoch, agent1, agent2, gamma=0.5, gamma2=0.95, epsilon=0.8,
                 state, available = new_state, new_available
 
                 # check if the game terminate
-                if reward[actor] != keepgoing_reward:
+                if reward[actor] != keepgoing_reward or count > width**2 - 2:
                     stop = True
                     break
 
