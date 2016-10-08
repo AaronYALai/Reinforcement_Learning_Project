@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-08-02 21:42:08
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 02:45:01
+# @Last Modified time: 2016-10-08 12:44:04
 
 import random
 import numpy as np
@@ -16,6 +16,11 @@ def training(epoch, agent1, agent2, gamma=0.5, gamma2=0.95, epsilon=0.8,
              eps_threshold=0.05, buffersize=100, batchsize=40, print_every=20,
              verb=[0, 0], width=19, win_reward=500, lose_reward=-1000,
              even_reward=-100, keepgoing_reward=-10):
+    """
+    Train 2 deep Q-network agents with epsilon greedy implementation
+    Use experience replay to avoid catastrophic forgetting
+    Policy: balancing suppressing opponent(gamma) and optimize return(gamma2)
+    """
     agents = [agent1, agent2]
     agent_exps = [[], []]
     running = [0, 0]
@@ -116,7 +121,7 @@ def train_agents(new=True, agent1_name=None, agent2_name=None, epoch=10,
                  print_every=20, verb=[0, 0], width=19, win_reward=500,
                  lose_reward=-1000, even_reward=-100, keepgoing_reward=-10,
                  lr=1e-4, moment=0.9):
-
+    """Create new agents or load existing agents then do training"""
     if new:
         agent1 = initAgent(neurons1, n_layer1, lr, moment, width)
         agent2 = initAgent(neurons2, n_layer2, lr, moment, width)

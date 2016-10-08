@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-08 01:55:41
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 02:51:41
+# @Last Modified time: 2016-10-08 12:39:13
 
 from gomoku_game import initGame, makeMove, getReward, drawGrid, displayGrid
 from agent_utils import load_agent
@@ -10,13 +10,19 @@ from agent_utils import load_agent
 import numpy as np
 
 
-def agent_play(agent1_name, agent2_name, width):
+def agent_play(agent1_name, agent2_name, width, win_reward=500,
+               lose_reward=-1000, even_reward=-100,
+               keepgoing_reward=-10):
+    """Load two agents and let them play against each other"""
     agent1 = load_agent(agent1_name)
     agent2 = load_agent(agent2_name)
-    play_game(agent1, agent2, width)
+    play_game(agent1, agent2, width, win_reward, lose_reward,
+              even_reward, keepgoing_reward)
 
 
-def play_game(agent1, agent2, width):
+def play_game(agent1, agent2, width, win_reward, lose_reward,
+              even_reward, keepgoing_reward):
+    """agents will take the move with the highest Q value"""
     state, available = initGame(width)
     agents = [agent1, agent2]
 
@@ -38,7 +44,9 @@ def play_game(agent1, agent2, width):
 
             state, available = makeMove(state, available, action, actor)
             displayGrid(drawGrid(state))
-            reward = getReward(state, actor)
+            reward = getReward(state, actor, win_reward, lose_reward,
+                               even_reward, keepgoing_reward)
+
             if reward[actor] != -10:
                 print("Reward: %s" % (reward,))
                 stop = True
