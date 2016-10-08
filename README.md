@@ -18,9 +18,7 @@ Some terms:
 
 Details
 --------
-Policy
-
-- epsilon greedy action selection policy
+Policy used: epsilon greedy action selection policy
 
 Greedy action:
 

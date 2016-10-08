@@ -2,7 +2,7 @@
 # @Author: aaronlai
 # @Date:   2016-10-08 13:31:46
 # @Last Modified by:   AaronLai
-# @Last Modified time: 2016-10-08 15:29:51
+# @Last Modified time: 2016-10-08 16:35:35
 
 from unittest import TestCase
 from gomoku_game import try_display
@@ -24,7 +24,8 @@ class test_running(TestCase):
 
     def test_train_agent_and_play(self):
         train_agents(width=9, agent1_save=self.ag1, agent2_save=self.ag2,
-                     n_layer1=1, n_layer2=1, neurons1=128, neurons2=128)
+                     n_layer1=1, n_layer2=1, neurons1=128, neurons2=128,
+                     lr=1e-5)
 
         # re-train
         train_agents(False, self.ag1, self.ag2, width=9)
