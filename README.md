@@ -18,9 +18,23 @@ Some terms:
 
 Details
 --------
-- Policy: epsilon greedy action selection policy
-- Training 1: Since two agents facing against each other, the "greedy action" is the one balancing between **suppressing the opponent's max Q value at the next step** and **promoting self's max Q value the next time you play** (Assume the opponent just reacts with the move with max Q value). 
-- Training 2: Update the neural network with **experience replay** which stores (X, y) in a fixed-length list (memory) and random sample a batch of (X, y) to update the network periodically.
+Policy
+
+- epsilon greedy action selection policy
+
+Greedy action:
+
+- Since two agents facing against each other, the "greedy action" is the one balancing between
+    - **suppressing the opponent's max Q value at the next step**
+    - **promoting self's max Q value the next time you play** (Assume the opponent just reacts with the move with max Q value).
+
+Experience replay:
+
+- Update the neural network with **experience replay** which stores (X, y) in a fixed-length list (memory) and random sample a batch of (X, y) to update the network periodically.
+
+When Playing:
+
+- The agent will just choose the move with the largest state-action value (Q value).
 
 Usage
 --------
