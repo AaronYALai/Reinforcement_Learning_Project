@@ -1,0 +1,31 @@
+# Code coverage measurement for Python
+# https://pypi.python.org/pypi/coverage/4.0.3
+coverage==4.0.3
+
+# pytest: simple powerful testing with Python
+# https://pypi.python.org/pypi/pytest/2.9.2
+pytest==2.9.2
+
+# Pytest plugin for measuring coverage.
+# https://pypi.python.org/pypi/pytest-cov/2.2.0
+pytest-cov==2.2.0
+
+# the modular source code checker: pep8, pyflakes and co
+# https://pypi.python.org/pypi/flake8/2.5.4
+flake8==2.5.4
+
+# NumPy: array processing for numbers, strings, records, and objects.
+# https://pypi.python.org/pypi/numpy
+numpy==1.11.1
+
+# nose extends unittest to make testing easier
+# https://pypi.python.org/pypi/nose/1.3.7
+nose==1.3.7
+
+# Theano: define, optimize, and efficiently evaluate  multi-dimensional arrays
+# https://pypi.python.org/pypi/Theano
+theano==0.8.2
+
+# Keras: high level deep learning module with theano or tensorflow
+# https://pypi.python.org/pypi/Keras
+Keras==1.1.0
